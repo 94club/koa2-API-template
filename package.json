@@ -10,6 +10,7 @@
     "production": "node dist/app.js"
   },
   "dependencies": {
+    "collect.js": "^3.0.47",
     "jsonwebtoken": "^7.4.1",
     "koa": "^2.3.0",
     "koa-body": "^2.3.0",

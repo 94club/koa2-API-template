@@ -3,8 +3,7 @@ Koa2 RESTful API 服务器模板
 
 这是一个基于Koa2的轻量级RESTful API Server模板，支持ES6。
 
-项目fork https://github.com/yi-ge/koa2-API-scaffold
-powered by [koa2-API-scaffold](https://github.com/yi-ge/koa2-API-scaffold) 并且在此基础上做了修改增加了一些示例代码
+基于[koa2-API-scaffold](https://github.com/yi-ge/koa2-API-scaffold)项目,并且在此基础上做了修改增加了一些示例代码
 
 项目使用说明请参考上面链接,感谢@yi-ge给出这么全面和详细的技术说明,技术全面乐于分享，赞。
 
