@@ -4,8 +4,8 @@ import controllers from '../controllers/index.js'
 const router = new KoaRouter()
 
 router
-  .get('/public/testUser', controllers.user.findOneUser) // 测试取得数据库数据
-  .get('/public/findOne', controllers.user.findOneById) // 测试取得数据库数据
+  .get('/public/findAllUser', controllers.user.findAllUser) // 测试取得数据库全部User数据
+  .get('/public/findOne', controllers.user.findOneById) // 测试取得数据库一条User数据
   .get('/public/get', function (ctx, next) {
     ctx.body = '欢迎~~！'
   }) // 以/public开头则不用经过权限认证
@@ -16,4 +16,4 @@ router
   .del('/api/:name', controllers.api.Delect)
   .post('/auth/:action', controllers.auth.Post)
 
-module.exports = router
+export default router

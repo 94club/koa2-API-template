@@ -1,8 +1,8 @@
 import models from '../models/index.js'
 
-export let findOneUser = async (ctx) => {
-  let user = await models.user.User.findOne()
-  ctx.body = user
+export let findAllUser = async (ctx) => {
+  let users = await models.user.User.findAll()
+  ctx.body = users
 }
 
 export let findOneById = async (ctx) => {
