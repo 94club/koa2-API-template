@@ -24,7 +24,7 @@ $ npm run dev # 可执行npm start跳过ESlint检查。
 
 **Node.js版本**
 
-node >= 8.0.0
+node >= 8.0.0  
 npm >= 5.0.0
 
 

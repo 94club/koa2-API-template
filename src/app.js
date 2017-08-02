@@ -11,6 +11,7 @@ import fs from 'fs'
 // import PluginLoader from './lib/PluginLoader'
 // 设置数据库链接
 import './lib/sequelize'
+import logger from 'koa-logger'
 
 const app = new Koa2()
 const env = process.env.NODE_ENV || 'development' // Current mode
@@ -48,6 +49,7 @@ app
   .use(ErrorRoutes())
 
 if (env === 'development') { // logger
+  /*
   app.use((ctx, next) => {
     const start = new Date()
     return next().then(() => {
@@ -55,6 +57,9 @@ if (env === 'development') { // logger
       console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
     })
   })
+  */
+  // 改用koa-logger组件，注释上面代码
+  app.use(logger())
 }
 
 app.listen(SystemConfig.API_server_port)
