@@ -10,6 +10,15 @@ const publicKey = fs.readFileSync(path.join(__dirname, '../../publicKey.pub'))
 // }, publicKey, { expiresIn: '7d' })
 
 /**
+ * 用户登录后返回的token
+ * @param userInfo 保存到token中的用户数据
+ * expiresIn: '1h'
+ */
+export let createToken = (userInfo) => {
+  return jwt.sign(userInfo, publicKey, {expiresIn: '7d'})
+}
+
+/**
  * 检查授权是否合法
  */
 export let CheckAuth = (ctx) => {
