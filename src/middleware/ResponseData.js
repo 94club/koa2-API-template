@@ -2,9 +2,9 @@
  * 返回给客户端的状态、消息和json数据
  */
 export default async (ctx, next) => {
-  ctx.error = (message, data = {}, code = 500) => {
+  ctx.error = (message = '服务器出错', data = {}, code = 500) => {
     ctx.body = {
-      code: 500,
+      code,
       message,
       data
     }
@@ -16,7 +16,7 @@ export default async (ctx, next) => {
       data
     }
   }
-  ctx.success = (data, message = '') => {
+  ctx.success = (data, message = 'ok') => {
     ctx.body = {
       code: 200,
       message,
