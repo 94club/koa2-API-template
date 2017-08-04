@@ -1,7 +1,7 @@
 import {Sequelize, db} from '../lib/sequelize'
 import moment from 'moment'
 
-export const User = db.define('api_user', {
+const User = db.define('api_user', {
   username: {
     type: Sequelize.STRING(50),
     unique: true
@@ -47,3 +47,5 @@ User.sync({force: true}).then(() => {
     timestamp_at: moment().format('X')
   })
 })
+
+export default User
