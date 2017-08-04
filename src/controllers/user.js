@@ -6,6 +6,13 @@ export let findAllUser = async (ctx) => {
 }
 
 export let findOneById = async (ctx) => {
-  let user = await models.user.User.findById(ctx.query.id)
-  ctx.body = user
+  // let user = await models.user.User.findById(ctx.query.id)
+  // ctx.body = user
+  var userid = ctx.query.id
+  try {
+    const user = await models.user.User.findById(userid)
+    user ? ctx.success(user) : ctx.notFound('不能找到用户检查id', {id: userid})
+  } catch (err) {
+    ctx.error(err.toString(), {id: userid})
+  }
 }

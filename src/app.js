@@ -12,6 +12,7 @@ import fs from 'fs'
 // 设置数据库链接
 import './lib/sequelize'
 import logger from 'koa-logger'
+import ResponseData from './middleware/ResponseData'
 
 const app = new Koa2()
 const env = process.env.NODE_ENV || 'development' // Current mode
@@ -58,6 +59,7 @@ app
     textLimit: '10mb'
   })) // Processing request
   // .use(PluginLoader(SystemConfig.System_plugin_path))
+  .use(ResponseData)
   .use(MainRoutes.routes())
   .use(MainRoutes.allowedMethods())
   .use(ErrorRoutes())
