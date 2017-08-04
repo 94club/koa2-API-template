@@ -19,7 +19,7 @@ export let findOneById = async (ctx) => {
 }
 */
 export default {
-  getUsers: async (ctx, next) => {
+  getUsers: async (ctx) => {
     try {
       let users = await User.findAll()
       ctx.success(users)
@@ -28,7 +28,7 @@ export default {
     }
   },
 
-  getUser: async (ctx, next) => {
+  getUser: async (ctx) => {
     var userid = ctx.params.id
     try {
       const user = await User.findById(userid)

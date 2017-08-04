@@ -1,5 +1,5 @@
 import {Sequelize, db} from '../lib/sequelize'
-import moment from 'moment'
+// import moment from 'moment'
 
 const User = db.define('api_user', {
   username: {
@@ -32,7 +32,7 @@ const User = db.define('api_user', {
 })
 // 创建表结构
 // User.sync({force: true})
-
+/*
 // force: true will drop the table if it already exists
 // 创建表结构并且增加一条数据
 User.sync({force: true}).then(() => {
@@ -47,5 +47,5 @@ User.sync({force: true}).then(() => {
     timestamp_at: moment().format('X')
   })
 })
-
+*/
 export default User
