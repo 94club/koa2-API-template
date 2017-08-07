@@ -26,7 +26,7 @@ export default {
       let users = await User.findAll()
       ctx.success(users)
     } catch (err) {
-      ctx.error(err.toString())
+      ctx.error('查询全部用户出错', err)
     }
   },
 
@@ -34,9 +34,9 @@ export default {
     let userid = ctx.params.id
     try {
       const user = await User.findById(userid)
-      user ? ctx.success(user) : ctx.notFound('没查到用户请检查id是否正确', {id: userid})
+      user ? ctx.success(user) : ctx.notFound('用户不存在', {id: userid})
     } catch (err) {
-      ctx.error(err.toString(), {id: userid})
+      ctx.error('查询用户出错', err, {id: userid})
     }
   },
 
@@ -50,10 +50,10 @@ export default {
       if (user) {
         ctx.success(createToken(user), '用户登录成功')
       } else {
-        ctx.notFound('用户名或者密码错误', {loginInfo: ctx.request.body})
+        ctx.notFound('用户名或者密码错误!', {loginInfo: ctx.request.body})
       }
     } catch (err) {
-      ctx.error(err.toString(), {loginInfo: ctx.request.body})
+      ctx.error('用户登录出错', err, {username, password})
     }
   },
 
@@ -71,7 +71,7 @@ export default {
       await User.create(newUser)
       ctx.success(null, '用户注册成功')
     } catch (err) {
-      ctx.error(err.toString(), {register: newUser})
+      ctx.error('用户注册出错', err, newUser)
     }
   }
 }
