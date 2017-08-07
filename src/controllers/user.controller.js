@@ -29,7 +29,7 @@ export default {
   },
 
   getUser: async (ctx) => {
-    var userid = ctx.params.id
+    let userid = ctx.params.id
     try {
       const user = await User.findById(userid)
       user ? ctx.success(user) : ctx.notFound('没查到用户请检查id是否正确', {id: userid})
