@@ -48,9 +48,9 @@ export default {
         where: {username, password: md5(password), is_delete: false}
       })
       if (user) {
-        ctx.success(createToken(user), '用户登录成功')
+        ctx.success(createToken(user.dataValues), '用户登录成功')
       } else {
-        ctx.notFound('用户名或者密码错误!', {loginInfo: ctx.request.body})
+        ctx.notFound('用户名或者密码错误!', {username, password})
       }
     } catch (err) {
       ctx.error('用户登录出错', err, {username, password})
