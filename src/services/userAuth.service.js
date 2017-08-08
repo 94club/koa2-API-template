@@ -22,16 +22,16 @@ export let createToken = (userInfo) => {
  * 检查授权是否合法
  */
 export let checkAuth = (ctx) => {
-  let token = ctx.request.header.authorization
+  let token = ctx.request.header.Authorization
   try {
     let decoded = jwt.verify(token.substr(7), publicKey)
     if (decoded.userInfo) {
       ctx.success(decoded.userInfo, '用户授权合法')
     } else {
-      ctx.error('用户没有授权', null, 403)
+      ctx.error('用户没有授权', '', {token}, 403)
     }
   } catch (err) {
-    ctx.error('用户信息解密错误', null, 503)
+    ctx.error('用户信息解密错误', err, {token}, 503)
   }
 }
 /*
