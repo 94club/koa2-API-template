@@ -48,7 +48,10 @@ export default {
         where: {username, password: md5(password), is_delete: false}
       })
       if (user) {
-        ctx.success(createToken(user.dataValues), '用户登录成功')
+        // 取得用户数据
+        const u = user.dataValues
+        u.token = createToken(u)
+        ctx.success(u, '用户登录成功')
       } else {
         ctx.notFound('用户名或者密码错误!', {username, password})
       }

@@ -1,8 +1,10 @@
 import userRoutes from './user.routes'
+import apiRoutes from './api.routes'
 import Router from 'koa-router'
 
 const router = new Router()
   .use(userRoutes.routes())
+  .use(apiRoutes.routes())
 
 router
   .get('/public/get', function (ctx, next) {
