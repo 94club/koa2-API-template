@@ -22,7 +22,7 @@ export let createToken = (userInfo) => {
  * 检查授权是否合法
  */
 export let checkAuth = (ctx) => {
-  let token = ctx.request.header.Authorization
+  let token = ctx.request.header.authorization
   try {
     let decoded = jwt.verify(token.substr(7), publicKey)
     if (decoded.userInfo) {
