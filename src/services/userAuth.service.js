@@ -19,14 +19,31 @@ export let createToken = (userInfo) => {
 }
 
 /**
+ * 取得token解码后的用户信息
+ * @param {jwt} token 
+ */
+export let getAuthInfo = (token) => {
+  try {
+    let decoded = jwt.verify(token.substr(7), publicKey)
+    if (decoded) {
+      return decoded
+    } else {
+      throw new Error('用户没有授权')
+    }
+  } catch (err) {
+    throw new Error('用户没有授权')
+  }
+}
+
+/**
  * 检查授权是否合法
  */
 export let checkAuth = (ctx) => {
   let token = ctx.request.header.authorization
   try {
     let decoded = jwt.verify(token.substr(7), publicKey)
-    if (decoded.userInfo) {
-      ctx.success(decoded.userInfo, '用户授权合法')
+    if (decoded) {
+      ctx.success(decoded, '用户授权合法')
     } else {
       ctx.error('用户没有授权', '', {token}, 403)
     }
@@ -34,13 +51,3 @@ export let checkAuth = (ctx) => {
     ctx.error('用户信息解密错误', err, {token}, 503)
   }
 }
-/*
-export let Post = (ctx) => {
-  switch (ctx.params.action) {
-    case 'check':
-      return checkAuth(ctx).then(result => { ctx.body = result })
-    default:
-      return checkAuth(ctx).then(result => { ctx.body = result })
-  }
-}
-*/
