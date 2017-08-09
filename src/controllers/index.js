@@ -4,6 +4,6 @@ module.exports = requireDirectory(module)
 */
 
 import User from './user.controller'
-import Api from './api.controller'
+import Test from './test.controller'
 
-export { User, Api }
+export { User, Test }

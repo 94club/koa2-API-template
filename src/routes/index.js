@@ -1,10 +1,10 @@
 import userRoutes from './user.routes'
-import apiRoutes from './api.routes'
+import testRoutes from './test.routes'
 import Router from 'koa-router'
 
 const router = new Router()
   .use(userRoutes.routes())
-  .use(apiRoutes.routes())
+  .use(testRoutes.routes())
 
 router
   .get('/public/get', function (ctx, next) {
