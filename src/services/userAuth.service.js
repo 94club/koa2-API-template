@@ -28,26 +28,9 @@ export let getAuthInfo = (token) => {
     if (decoded) {
       return decoded
     } else {
-      throw new Error('用户没有授权')
+      throw new Error('用户信息解密错误,用户没有授权')
     }
   } catch (err) {
-    throw new Error('用户没有授权')
-  }
-}
-
-/**
- * 检查授权是否合法
- */
-export let checkAuth = (ctx) => {
-  let token = ctx.request.header.authorization
-  try {
-    let decoded = jwt.verify(token.substr(7), publicKey)
-    if (decoded) {
-      ctx.success(decoded, '用户授权合法')
-    } else {
-      ctx.error('用户没有授权', '', {token}, 403)
-    }
-  } catch (err) {
-    ctx.error('用户信息解密错误', err, {token}, 503)
+    throw new Error('用户信息解密错误,用户没有授权')
   }
 }
