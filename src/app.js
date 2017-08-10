@@ -13,6 +13,7 @@ import fs from 'fs'
 import './lib/sequelize'
 import logger from 'koa-logger'
 import ResponseData from './middleware/ResponseData'
+import UserAuth from './middleware/UserAuth'
 
 const app = new Koa2()
 const env = process.env.NODE_ENV || 'development' // Current mode
@@ -45,6 +46,7 @@ app
     ctx.set('Access-Control-Allow-Credentials', true) // 允许带上 cookie
     return next()
   })
+  .use(ResponseData)
   .use(ErrorRoutesCatch())
   .use(KoaStatic('assets', path.resolve(__dirname, '../assets'))) // Static resource
   .use(jwt({ secret: publicKey }).unless({ path: [/^\/public|\/user\/login|\/assets/] }))
@@ -59,7 +61,7 @@ app
     textLimit: '10mb'
   })) // Processing request
   // .use(PluginLoader(SystemConfig.System_plugin_path))
-  .use(ResponseData)
+  .use(UserAuth)
   .use(MainRoutes.routes())
   .use(MainRoutes.allowedMethods())
   .use(ErrorRoutes())

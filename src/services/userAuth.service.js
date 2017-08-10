@@ -21,7 +21,7 @@ export let createToken = (userInfo) => {
 /**
  * 取得token解码后的用户信息
  * @param {jwt} token 
- */
+ * 不需要处理异常,中间件已经验证过了
 export let getAuthInfo = (token) => {
   try {
     let decoded = jwt.verify(token.substr(7), publicKey)
@@ -33,4 +33,12 @@ export let getAuthInfo = (token) => {
   } catch (err) {
     throw new Error('用户信息解密错误,用户没有授权')
   }
+}
+*/
+
+/**
+ * 取得token解码后的用户信息
+ */
+export let getAuthInfo = (token) => {
+  return jwt.verify(token.substr(7), publicKey)
 }
