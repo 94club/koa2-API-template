@@ -3,6 +3,8 @@ import path from 'path'
 import { System as SystemConfig } from '../config'
 
 export default (ctx) => {
+  /*
+   * 中间件已设置不需要再设置
   // 设置允许跨域的域名称
   ctx.set('Access-Control-Allow-Origin', '*')
   ctx.set('Access-Control-Allow-Headers', 'X-Requested-With')
@@ -17,11 +19,9 @@ export default (ctx) => {
     ctx.body = 'options OK'
     return
   }
+  */
 
   // ----- 情况2：发送post请求，上传图片 -----
-
-  // 处理 request
-  console.log('parse ok')
 
   // 文件将要上传到哪个文件夹下面
   var uploadfolderpath = path.join(__dirname, '../../assets/uploads')

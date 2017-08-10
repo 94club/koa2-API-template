@@ -44,6 +44,13 @@ app
     ctx.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization') // 允许headers使用Authorization
     ctx.set('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS')
     ctx.set('Access-Control-Allow-Credentials', true) // 允许带上 cookie
+    // ----- 跨域时，先发送一个options请求，此处要返回200 -----
+    if (ctx.method === 'OPTIONS') {
+      // 返回结果
+      ctx.status = 200
+      ctx.body = 'options OK'
+      return
+    }
     return next()
   })
   .use(ResponseData)
