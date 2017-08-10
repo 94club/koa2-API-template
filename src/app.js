@@ -14,6 +14,7 @@ import './lib/sequelize'
 import logger from 'koa-logger'
 import ResponseData from './middleware/ResponseData'
 import UserAuth from './middleware/UserAuth'
+import CorsRequest from './middleware/CorsRequest'
 
 const app = new Koa2()
 const env = process.env.NODE_ENV || 'development' // Current mode
@@ -32,27 +33,11 @@ if (env === 'development') { // logger
   */
   // 改用koa-logger组件，注释上面代码
   app.use(logger())
+  // 开发环境用跨域请求，生产环境用反向代理服务器
+  app.use(CorsRequest)
 }
 
 app
-  .use((ctx, next) => {
-    if (ctx.request.header.host.split(':')[0] === 'localhost' || ctx.request.header.host.split(':')[0] === '127.0.0.1') {
-      ctx.set('Access-Control-Allow-Origin', '*')
-    } else {
-      ctx.set('Access-Control-Allow-Origin', SystemConfig.HTTP_server_host)
-    }
-    ctx.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization') // 允许headers使用Authorization
-    ctx.set('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS')
-    ctx.set('Access-Control-Allow-Credentials', true) // 允许带上 cookie
-    // ----- 跨域时，先发送一个options请求，此处要返回200 -----
-    if (ctx.method === 'OPTIONS') {
-      // 返回结果
-      ctx.status = 200
-      ctx.body = 'options OK'
-      return
-    }
-    return next()
-  })
   .use(ResponseData)
   .use(ErrorRoutesCatch())
   .use(KoaStatic('assets', path.resolve(__dirname, '../assets'))) // Static resource
