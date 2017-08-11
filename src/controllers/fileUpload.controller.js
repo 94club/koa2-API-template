@@ -50,13 +50,10 @@ export default {
     try {
       fs.renameSync(tempfilepath, filenewpath)
     } catch (err) {
-      if (err) {
-      // 发生错误
-        ctx.error('文件上传出错', err, {filename})
-      }
+      ctx.error('文件上传出错', err, {filename})
     }
     // 拼接url地址
-    let fileURL = SystemConfig.API_server_type + SystemConfig.API_server_host + ':' + SystemConfig.API_server_port + '/assets/uploads/' + filename
+    let fileURL = `${SystemConfig.API_server_type}${SystemConfig.API_server_host}:${SystemConfig.API_server_port}/assets/uploads/${filename}`
     // let fileURL = `/assets/uploads/${filename}`
     // 返回结果
     ctx.success(fileURL, '文件上传成功')
