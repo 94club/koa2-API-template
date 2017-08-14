@@ -45,13 +45,15 @@ export default {
     let password = ctx.request.body.password
     try {
       const user = await User.findOne({
+        attributes: ['id', 'username', 'email'],
         where: {username, password: md5(password), is_delete: false}
       })
       if (user) {
-        // 取得用户数据
+        // 取得用户数据,根据model的dataValues属性
         const u = user.dataValues
-        u.token = createToken(u)
-        ctx.success(u, '用户登录成功')
+        // 用户登陆后只返回token,客户端根据token取得用户信息
+        const token = createToken(u)
+        ctx.success({ token }, '用户登录成功')
       } else {
         ctx.notFound('用户名或者密码错误!', {username, password})
       }
