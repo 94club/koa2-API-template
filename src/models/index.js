@@ -3,5 +3,6 @@ let requireDirectory = require('require-directory')
 module.exports = requireDirectory(module)
 */
 import User from './user.model'
+import FileUpload from './fileUpload.model'
 
-export { User }
+export { User, FileUpload }

@@ -1,6 +1,8 @@
 import fs from 'fs'
 import path from 'path'
 import { System as SystemConfig } from '../config'
+import { FileUpload } from '../models'
+import { currentDateTime, timestamp } from '../tool/dateUtil'
 
 export default {
   /*
@@ -55,7 +57,23 @@ export default {
     // 拼接url地址
     let fileURL = `${SystemConfig.API_server_type}${SystemConfig.API_server_host}:${SystemConfig.API_server_port}/assets/uploads/${filename}`
     // let fileURL = `/assets/uploads/${filename}`
-    // 返回结果
-    ctx.success(fileURL, '文件上传成功')
+
+    // 保存上传信息
+    let fileInfo = {
+      file_name: file.name,
+      ext_name: extname,
+      file_url: fileURL,
+      content_type: type,
+      created_at: currentDateTime(),
+      updated_at: currentDateTime(),
+      timestamp_at: timestamp()
+    }
+    try {
+      await FileUpload.create(fileInfo)
+      // 返回结果
+      ctx.success(fileInfo, '文件上传成功')
+    } catch (err) {
+      ctx.error('文件上传出错', err)
+    }
   }
 }
