@@ -4,7 +4,7 @@ import moment from 'moment'
  * 取得当前日期
  * @return 当前日期。如：2012-11-09
  */
-export let currentDate = () => {
+export function currentDate () {
   return moment().format('YYYY-MM-DD')
 }
 
@@ -12,7 +12,7 @@ export let currentDate = () => {
  * 取得当前日期时间
  * @return 当前日期。如：2012-11-09 17:04:49
  */
-export let currentDateTime = () => {
+export function currentDateTime () {
   return moment().format('YYYY-MM-DD HH:mm:ss')
 }
 
@@ -20,7 +20,7 @@ export let currentDateTime = () => {
  * 取得当前时间
  * @return 当前日期。如：17:04:49
  */
-export let currentTime = () => {
+export function currentTime () {
   return moment().format('HH:mm:ss')
 }
 
@@ -30,7 +30,7 @@ export let currentTime = () => {
  * @param month 月。如：02或2。
  * @return 日期。如：2012-02-01。
  */
-export let monthStart = (year, month) => {
+export function monthStart (year, month) {
   month = month.length < 2 ? `0${month}` : month
   //   return moment(`${year}-${month}-01`, 'YYYY-MM-DD').format('YYYY-MM-DD')
   return `${year}-${month}-01`
@@ -42,7 +42,7 @@ export let monthStart = (year, month) => {
  * @param month 月。如：02或2。
  * @return 日期。如：2012-01-01。
  */
-export let preMonthStart = (year, month) => {
+export function preMonthStart (year, month) {
   month = month.length < 2 ? `0${month}` : month
   return moment(`${year}-${month}-01`, 'YYYY-MM-DD').subtract(1, 'months').format('YYYY-MM-DD')
 }
@@ -53,7 +53,7 @@ export let preMonthStart = (year, month) => {
  * @param month 月。如：02或2。
  * @return 日期。如：2012-01-31。
  */
-export let preMonthEnd = (year, month) => {
+export function preMonthEnd (year, month) {
   month = month.length < 2 ? `0${month}` : month
   // 上一个月
   let preMonth = moment(`${year}-${month}`, 'YYYY-MM').subtract(1, 'months')
@@ -68,7 +68,7 @@ export let preMonthEnd = (year, month) => {
  * @param month 月。如：02或2。
  * @return 日期。如：2012-02-29。
  */
-export let monthEnd = (year, month) => {
+export function monthEnd (year, month) {
   month = month.length < 2 ? `0${month}` : month
   //   moment("2012-02", "YYYY-MM").daysInMonth() // 29
   //   moment("2012-01", "YYYY-MM").daysInMonth() // 31
@@ -83,7 +83,7 @@ export let monthEnd = (year, month) => {
  * @param month 月。如：02或2。
  * @return 日期。如：2012-03-01。
  */
-export let nextMonthStart = (year, month) => {
+export function nextMonthStart (year, month) {
   month = month.length < 2 ? `0${month}` : month
   // 下一个月
   let nextMonth = moment(`${year}-${month}`, 'YYYY-MM').add(1, 'months')
@@ -96,7 +96,7 @@ export let nextMonthStart = (year, month) => {
  * @param month 月。如：02或2。
  * @return 日期。如：2012-03-31。
  */
-export let nextMonthEnd = (year, month) => {
+export function nextMonthEnd (year, month) {
   month = month.length < 2 ? `0${month}` : month
   // 下一个月
   let nextMonth = moment(`${year}-${month}`, 'YYYY-MM').add(1, 'months')
@@ -111,7 +111,7 @@ export let nextMonthEnd = (year, month) => {
  * @param month月。如：02或2。
  * @return 日期。如：2012-01。
  */
-export let prevMonth = (year, month) => {
+export function prevMonth (year, month) {
   month = month.length < 2 ? `0${month}` : month
   // 上一个月
   let preMonth = moment(`${year}-${month}`, 'YYYY-MM').subtract(1, 'months')
@@ -124,7 +124,7 @@ export let prevMonth = (year, month) => {
  * @param month月。如：02或2。
  * @return 日期。如：2012-01。
  */
-export let getNextMonth = (year, month) => {
+export function getNextMonth (year, month) {
   month = month.length < 2 ? `0${month}` : month
   // 下一个月
   let nextMonth = moment(`${year}-${month}`, 'YYYY-MM').add(1, 'months')
@@ -136,7 +136,7 @@ export let getNextMonth = (year, month) => {
  * @param date 指定日期（如：2012-02-11）
  * @return 年（如：2012）
  */
-export let yearOfDate = (date) => {
+export function yearOfDate (date) {
   // 取得指定日期的年
   return moment(date, 'YYYY-MM-DD').get('year')
 }
@@ -146,7 +146,7 @@ export let yearOfDate = (date) => {
  * @param date 指定日期（如：2012-02-11）
  * @return 月（如：02）
  */
-export let monthOfDate = (date) => {
+export function monthOfDate (date) {
   // moment().get('month');  // 0 to 11
   // 取得指定日期的月,需要加1
   return moment(date, 'YYYY-MM-DD').get('month') + 1
@@ -157,7 +157,7 @@ export let monthOfDate = (date) => {
  * @param date 指定日期（如：2012-02-11）
  * @return 月（如：02）
  */
-export let dayOfDate = (date) => {
+export function dayOfDate (date) {
   // 取得指定日期的月
   return moment(date, 'YYYY-MM-DD').get('date')
 }
@@ -166,7 +166,7 @@ export let dayOfDate = (date) => {
  * 取得当前年
  * @return 年（如：2012）
  */
-export let year = () => {
+export function year () {
   return moment().get('year')
 }
 
@@ -174,7 +174,7 @@ export let year = () => {
  * 取得当前月
  * @return 月（如：02）
  */
-export let month = () => {
+export function month () {
   // moment().get('month');  // 0 to 11
   return moment().get('month') + 1
 }
@@ -183,7 +183,7 @@ export let month = () => {
  * 取得当前日
  * @return 日（如：02）
  */
-export let day = () => {
+export function day () {
   return moment().get('date')
 }
 
@@ -192,7 +192,7 @@ export let day = () => {
  * @param date 指定日期（如：2012-02-11）
  * @return 年月（如：2012-02）
  */
-export let ymOfDate = (date) => {
+export function ymOfDate (date) {
   return moment(date, 'YYYY-MM-DD').format('YYYY-MM')
 }
 
@@ -200,7 +200,7 @@ export let ymOfDate = (date) => {
  * 取得当前年月
  * @return 年月（如：2012-02）
  */
-export let ym = () => {
+export function ym () {
   return moment().format('YYYY-MM')
 }
 
@@ -208,6 +208,6 @@ export let ym = () => {
  * 取得当前时间戳
  * @return 时间戳（如：1502162703）
  */
-export let timestamp = () => {
+export function timestamp () {
   return moment().format('X')
 }
