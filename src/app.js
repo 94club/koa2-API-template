@@ -5,7 +5,7 @@ import {System as SystemConfig} from './config'
 import path from 'path'
 import MainRoutes from './routes'
 import ErrorRoutesCatch from './middleware/ErrorRoutesCatch'
-import ErrorRoutes from './routes/error-routes'
+import ErrorRoute from './routes/error-route'
 import jwt from 'koa-jwt'
 import fs from 'fs'
 // import PluginLoader from './lib/PluginLoader'
@@ -56,7 +56,7 @@ app
   .use(UserAuth)
   .use(MainRoutes.routes())
   .use(MainRoutes.allowedMethods())
-  .use(ErrorRoutes())
+  .use(ErrorRoute())
 
 app.listen(SystemConfig.API_server_port)
 

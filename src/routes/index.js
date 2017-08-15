@@ -1,12 +1,12 @@
-import userRoutes from './user.routes'
-import testRoutes from './test.routes'
-import fileUploadRoutes from './fileUpload.routes'
+import userRoute from './user.route'
+import testRoute from './test.route'
+import fileUploadRoute from './fileUpload.route'
 import Router from 'koa-router'
 
 const router = new Router()
-  .use(userRoutes.routes())
-  .use(testRoutes.routes())
-  .use(fileUploadRoutes.routes())
+  .use(userRoute.routes())
+  .use(testRoute.routes())
+  .use(fileUploadRoute.routes())
 
 router
   .get('/public/get', function (ctx, next) {
