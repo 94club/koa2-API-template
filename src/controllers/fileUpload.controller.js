@@ -69,9 +69,9 @@ export default {
       timestamp_at: timestamp()
     }
     try {
-      await FileUpload.create(fileInfo)
+      const saveFile = await FileUpload.create(fileInfo)
       // 返回结果
-      ctx.success(fileInfo, '文件上传成功')
+      ctx.success(saveFile.dataValues, '文件上传成功')
     } catch (err) {
       ctx.error('文件上传出错', err)
     }
