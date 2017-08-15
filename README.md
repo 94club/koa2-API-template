@@ -18,6 +18,7 @@
 - [md5](https://github.com/pvorb/node-md5) - Encrypt data such as password
 - [Eslint](https://github.com/eslint/eslint) + [Standard style](https://github.com/standard/standard) - Standard style for code consistency
 - [Nodemon](https://github.com/remy/nodemon) - to reload automatically the server in development
+- [downloadjs](https://github.com/rndme/download) - file downloading using client-side javascript
 - Basic User model
 
 ## 开发使用说明
