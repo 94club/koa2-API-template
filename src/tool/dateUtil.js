@@ -203,3 +203,11 @@ export let ymOfDate = (date) => {
 export let ym = () => {
   return moment().format('YYYY-MM')
 }
+
+/**
+ * 取得当前时间戳
+ * @return 时间戳（如：1502162703）
+ */
+export let timestamp = () => {
+  return moment().format('X')
+}
