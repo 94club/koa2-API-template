@@ -1,3 +1,4 @@
+// import download from 'downloadjs'
 import fs from 'fs'
 import path from 'path'
 import { System as SystemConfig } from '../config'
@@ -74,6 +75,25 @@ export default {
       ctx.success(saveFile.dataValues, '文件上传成功')
     } catch (err) {
       ctx.error('文件上传出错', err)
+    }
+  },
+  fileDownload: async (ctx, next) => {
+    const fid = ctx.params.id
+    try {
+      const file = await FileUpload.findById(fid)
+      if (file) {
+        const f = file.dataValues
+        // ctx.type = 'application/octet-stream'
+        // download(data, strFileName, strMimeType)
+        // 这个需要在前端（浏览器端使用）
+        // download(f.file_url, f.file_name, f.content_type)
+        // 数据传给客户端，客户端调用downloadjs组件的download方法
+        ctx.success(f)
+      } else {
+        ctx.notFound('下载文件不存在', {id: fid})
+      }
+    } catch (err) {
+      ctx.error('下载文件出错', err, {id: fid})
     }
   }
 }

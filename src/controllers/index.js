@@ -5,6 +5,6 @@ module.exports = requireDirectory(module)
 
 import User from './user.controller'
 import Test from './test.controller'
-import FileUpload from './fileUpload.controller'
+import FileUpDown from './fileUpDown.controller'
 
-export { User, Test, FileUpload }
+export { User, Test, FileUpDown }
