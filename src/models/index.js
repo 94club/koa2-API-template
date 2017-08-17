@@ -4,5 +4,6 @@ module.exports = requireDirectory(module)
 */
 import User from './user.model'
 import FileUpload from './fileUpload.model'
+import TodoList from './todoList.model'
 
-export { User, FileUpload }
+export { User, FileUpload, TodoList }
