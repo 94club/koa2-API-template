@@ -1,6 +1,6 @@
 import {Sequelize, db} from '../lib/sequelize'
 
-const Todolist = db.define('api_todolist', {
+const Todolist = db.define('todolist', {
   content: { // 事项内容
     type: Sequelize.STRING(1000)
   },
@@ -22,7 +22,7 @@ const Todolist = db.define('api_todolist', {
   timestamps: false,
   comment: '事项列表信息表'
 })
-// 创建表结构
+// 创建当前表结构,不会添加外键
 // Todolist.sync({force: true})
 
 export default Todolist

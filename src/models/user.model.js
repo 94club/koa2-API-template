@@ -1,7 +1,7 @@
 import {Sequelize, db} from '../lib/sequelize'
 // import moment from 'moment'
 
-const User = db.define('api_user', {
+const User = db.define('user', {
   username: {
     type: Sequelize.STRING(50),
     unique: true
@@ -30,7 +30,7 @@ const User = db.define('api_user', {
   timestamps: false,
   comment: '用户信息表'
 })
-// 创建表结构
+// 创建当前表结构,不会添加外键
 // User.sync({force: true})
 /*
 // force: true will drop the table if it already exists

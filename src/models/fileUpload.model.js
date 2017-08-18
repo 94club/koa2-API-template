@@ -1,6 +1,6 @@
 import {Sequelize, db} from '../lib/sequelize'
 
-const FileUpload = db.define('api_fileupload', {
+const FileUpload = db.define('fileupload', {
   file_name: { // 文件名
     type: Sequelize.STRING(150)
   },
