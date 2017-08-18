@@ -1,6 +1,6 @@
 import md5 from 'md5'
 import moment from 'moment'
-import { User } from '../models'
+import { User, TodoList } from '../models'
 import { createToken } from '../services/userAuth.service'
 /*
 export let findAllUser = async (ctx) => {
@@ -23,7 +23,19 @@ export let findOneById = async (ctx) => {
 export default {
   getUsers: async (ctx) => {
     try {
-      let users = await User.findAll()
+      let users = await User.findAll({
+        attributes: { exclude: ['password', 'is_delete', 'timestamp_at'] } // 不包含的列
+      }) // 没有关联关系
+      // let users = await User.findAll({
+      //   include: [ TodoList ], // 关联表不带查询条件
+      //   // include: [{
+      //   //   TodoList,
+      //   //   where: { id: 2 } // 关联表带查询条件,查询条件不好用。不知道为什么
+      //   // }],
+      //   where: {
+      //     id: 1 // 查询user表的条件
+      //   }
+      // }) // 有关联关系1:m
       ctx.success(users)
     } catch (err) {
       ctx.error('查询全部用户出错', err)
