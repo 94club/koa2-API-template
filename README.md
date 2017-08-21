@@ -21,11 +21,15 @@
 - [downloadjs](https://github.com/rndme/download) - file downloading using client-side javascript
 
 ## 特性
+- async/await
 - Upload file
 - Download file
 - Authentication jwt
 - Basic User model
 - Basic Fileupload model
+
+## 前端项目示例
+客户端 [vue-ssr-front-todo](https://github.com/yzijun/vue-ssr-front-todo) 通过和客户端结合后以前后端分离的方式演示网站开发中的常见技术示例
 
 ## 开发使用说明
 
