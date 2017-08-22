@@ -4,11 +4,16 @@ import { mysqlPageInfo } from '../tool/pageUtil'
 export default {
   // 取得todo列表分页数据
   todoPages: async (ctx) => {
-    const pageNum = ctx.query.page // 当前第几页 ctx.query是取得?后的参数如page=1 /public/v1/todolist/?page=1 
+    // 当前第几页 ctx.query是取得?后的参数如page=1 /public/v1/todolist/?page=1
+    const pageNum = ctx.query.page
     const { offset, limit } = mysqlPageInfo(pageNum)
     try {
       let todolist = await TodoList.findAll({
-        include: [ User ],
+        // include: [ User ], // 默认查询所有字段
+        include: [{
+          model: User,
+          attributes: ['id', 'username'] // 指定需要查询的字段
+        }],
         attributes: ['id', 'title', 'content', 'is_complete', 'created_at'],
         order: [['timestamp_at', 'DESC']],
         // limit/offset - 分页与限制返回结果数
