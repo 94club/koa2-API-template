@@ -13,6 +13,7 @@ export default {
         include: [{
           model: User,
           attributes: ['id', 'username'] // 指定需要查询的字段
+          // where: { id: 2 } // 设置关联表的查询条件
         }],
         attributes: ['id', 'title', 'content', 'is_complete', 'created_at'],
         order: [['timestamp_at', 'DESC']],
