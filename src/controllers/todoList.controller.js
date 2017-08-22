@@ -9,7 +9,7 @@ export default {
     try {
       let todolist = await TodoList.findAll({
         include: [ User ],
-        attributes: ['id', 'content', 'is_complete', 'created_at', 'updated_at'],
+        attributes: ['id', 'title', 'content', 'is_complete', 'created_at'],
         order: [['timestamp_at', 'DESC']],
         // limit/offset - 分页与限制返回结果数
         offset,
