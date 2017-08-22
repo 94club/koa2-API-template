@@ -1,6 +1,9 @@
 import {Sequelize, db} from '../lib/sequelize'
 
 const Todolist = db.define('todolist', {
+  title: { // 事项标题
+    type: Sequelize.STRING(200)
+  },
   content: { // 事项内容
     type: Sequelize.STRING(1000)
   },

@@ -3,11 +3,15 @@ let requireDirectory = require('require-directory')
 module.exports = requireDirectory(module)
 */
 
-// import { db } from '../lib/sequelize'
+import { db } from '../lib/sequelize'
 import User from './user.model'
 import FileUpload from './fileUpload.model'
 import TodoList from './todoList.model'
-
+/**
+ * 如果设置belongsTo在hasMany增加外键约束constraints: false是不好用的
+ * 如果不设置belongsTo在hasMany增加外键约束constraints: false是好用的
+ * 如果只设置hasMany没设置constraints: false默认是增加外键约束
+ */
 TodoList.belongsTo(User)
 User.hasMany(TodoList, {
   // as: 'User', // 使用as选项为关系数据指定别名
@@ -15,6 +19,6 @@ User.hasMany(TodoList, {
   constraints: false // 不设置外键约束
 })
 // 重新创建所有的表结构
-// db.sync({force: true})
+db.sync({force: true})
 
 export { User, FileUpload, TodoList }

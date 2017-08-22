@@ -1,6 +1,7 @@
 import md5 from 'md5'
 import moment from 'moment'
-import { User, TodoList } from '../models'
+import { User } from '../models'
+// import { User, TodoList } from '../models'
 import { createToken } from '../services/userAuth.service'
 /*
 export let findAllUser = async (ctx) => {
