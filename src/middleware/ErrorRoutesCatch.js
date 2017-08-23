@@ -11,7 +11,7 @@ module.exports = function () {
           //     errInfo: 'Protected resource, use Authorization header to get access.'
           //   }
           // }
-          ctx.error('用户授权错误', 'token无效解析失败', null, 401)
+          ctx.error('请登录后继续操作', '用户授权错误token无效解析失败', null, 401)
           break
         default:
           throw err

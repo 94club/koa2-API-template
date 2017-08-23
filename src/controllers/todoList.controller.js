@@ -3,7 +3,7 @@ import { mysqlPageInfo } from '../tool/pageUtil'
 import { currentDateTime, timestamp } from '../tool/dateUtil'
 
 export default {
-  // 取得todo列表分页数据
+  // 事项列表分页数据
   todoPages: async (ctx) => {
     // 当前第几页 ctx.query是取得?后的参数如page=1 /public/v1/todolist/?page=1
     const pageNum = ctx.query.page
@@ -24,7 +24,7 @@ export default {
       }) // 关联关系m:1
       ctx.success(todolist)
     } catch (err) {
-      ctx.error('查询分页todo列表出错', err)
+      ctx.error('查询分页事项列表出错', err)
     }
   },
   // 增加todo列表项
@@ -40,7 +40,7 @@ export default {
       await TodoList.create(newTodo)
       ctx.success(null, '成功新增一条事项')
     } catch (err) {
-      ctx.error('增加事项列表项出错', err, newTodo)
+      ctx.error('增加事项出错', err, newTodo)
     }
   },
   // 修改todo列表项
