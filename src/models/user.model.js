@@ -2,27 +2,37 @@ import {Sequelize, db} from '../lib/sequelize'
 // import moment from 'moment'
 
 const User = db.define('user', {
-  username: {
-    type: Sequelize.STRING(50),
-    unique: true
+  username: { // 用户名
+    type: Sequelize.STRING(50)
+    // unique: true
   },
-  password: {
+  password: { // 密码
     type: Sequelize.STRING
   },
-  email: {
+  email: { // 邮件
     type: Sequelize.STRING(50)
   },
-  created_at: {
+  phone_number: { // 手机号
+    type: Sequelize.STRING(50),
+    defaultValue: null,
+    validate: {
+      isNumeric: true // 只能使用数字
+    }
+  },
+  head_img: { // 头像URL
+    type: Sequelize.STRING
+  },
+  created_at: { // 创建日期时间
     type: Sequelize.STRING(30)
   },
-  updated_at: {
+  updated_at: { // 更新日期时间
     type: Sequelize.STRING(30)
   },
-  is_delete: {
+  is_delete: { // 用户是否删除
     type: Sequelize.BOOLEAN,
     defaultValue: false
   },
-  timestamp_at: {
+  timestamp_at: { // 更新时的时间戳
     type: Sequelize.BIGINT
   }
 },
