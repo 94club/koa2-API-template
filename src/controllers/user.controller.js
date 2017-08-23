@@ -1,8 +1,9 @@
 import md5 from 'md5'
-import moment from 'moment'
 import { User } from '../models'
 // import { User, TodoList } from '../models'
 import { createToken } from '../services/userAuth.service'
+import { currentDateTime, timestamp } from '../tool/dateUtil'
+
 /*
 export let findAllUser = async (ctx) => {
   let users = await models.user.User.findAll()
@@ -80,10 +81,10 @@ export default {
       username: ctx.request.body.username,
       password: md5(ctx.request.body.password),
       email: ctx.request.body.email,
-      created_at: moment().format('YYYY-MM-DD HH:mm:ss'),
-      updated_at: moment().format('YYYY-MM-DD HH:mm:ss'),
+      created_at: currentDateTime(),
+      updated_at: currentDateTime(),
       is_delete: false,
-      timestamp_at: moment().format('X')
+      timestamp_at: timestamp()
     }
     try {
       await User.create(newUser)

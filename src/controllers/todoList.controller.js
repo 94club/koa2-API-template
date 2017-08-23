@@ -1,5 +1,6 @@
 import { User, TodoList } from '../models'
 import { mysqlPageInfo } from '../tool/pageUtil'
+import { currentDateTime, timestamp } from '../tool/dateUtil'
 
 export default {
   // 取得todo列表分页数据
@@ -28,12 +29,18 @@ export default {
   },
   // 增加todo列表项
   addTodo: async (ctx) => {
-    let userid = ctx.params.id
+    let newTodo = {
+      title: ctx.request.body.title,
+      content: ctx.request.body.content,
+      created_at: currentDateTime(),
+      updated_at: currentDateTime(),
+      timestamp_at: timestamp()
+    }
     try {
-      const user = await User.findById(userid)
-      user ? ctx.success(user) : ctx.notFound('用户不存在', {id: userid})
+      await TodoList.create(newTodo)
+      ctx.success(null, '成功新增一条事项')
     } catch (err) {
-      ctx.error('查询用户出错', err, {id: userid})
+      ctx.error('增加事项列表项出错', err, newTodo)
     }
   },
   // 修改todo列表项
