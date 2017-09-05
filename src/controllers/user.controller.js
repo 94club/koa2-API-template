@@ -56,11 +56,11 @@ export default {
 
   login: async (ctx) => {
     let username = ctx.request.body.username
-    let password = ctx.request.body.password
+    let password = md5(ctx.request.body.password)
     try {
       const user = await User.findOne({
         attributes: ['id', 'username', 'email'],
-        where: {username, password: md5(password), is_delete: false}
+        where: {username, password, is_delete: false}
       })
       if (user) {
         // 取得用户数据,根据model的dataValues属性
