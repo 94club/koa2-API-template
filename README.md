@@ -2,7 +2,7 @@
 
 这是一个基于Koa2的轻量级RESTful API Server模板，支持ES6、ES7。  
 基于[koa2-API-scaffold](https://github.com/yi-ge/koa2-API-scaffold)项目,并且在此基础上做了修改。  
-项目使用说明请参考上面链接,感谢@yi-ge给出这么全面和详细的技术说明,技术全面乐于分享，赞。  
+项目使用说明请参考上面链接. 
 
 ## 使用的技术栈
 - [koa2](https://github.com/koajs/koa) - HTTP framework.
